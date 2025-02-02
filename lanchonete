@@ -1,0 +1,68 @@
+import java.util.Locale;
+import java.util.Scanner;
+
+public class lanchonete {
+
+	public static void main(String[] args) {
+		// data in
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		double price = 0, qntd = 0;
+		System.out.printf("CODIGO  ESPECIFICAÇAO    PREÇO%n");
+		System.out.printf("1       Cachorro Quente  R$ 4.00%n");
+		System.out.printf("2       X-Salada         R$ 4.50%n");
+		System.out.printf("3       X-Bacon          R$ 5.00%n");
+		System.out.printf("4       Torrada simples  R$ 2.00%n");
+		System.out.printf("5       Refrigerante     R$ 1.50%n");
+		System.out.print("Digite o código do produto: ");
+		int code = sc.nextInt();
+		
+		// data processing
+		switch (code) {
+			case 1: price = 4.00; break;
+			case 2: price = 4.50; break;
+			case 3: price = 5.00; break;
+			case 4: price = 2.00; break;
+			case 5: price = 1.50; break;
+			default:
+				System.out.println("Opçao invalida!");
+				sc.close();
+				return;
+		}
+		System.out.print("Digite a quantidade: ");
+		qntd = sc.nextInt();
+		price = price * qntd;
+		
+		int continuar;
+		do {
+			System.out.print("Fechar compra? (0 = não; 1 = sim): ");
+			continuar = sc.nextInt();
+			
+			if (continuar == 0) {
+				double price2, qntd2;
+				System.out.print("Digite o código do produto: ");
+				int code2 = sc.nextInt();
+
+				switch (code2) {
+					case 1: price2 = 4.00; break;
+					case 2: price2 = 4.50; break;
+					case 3: price2 = 5.00; break;
+					case 4: price2 = 2.00; break;
+					case 5: price2 = 1.50; break;
+					default:
+						System.out.println("Opçao invalida!");
+						continue;
+				}
+				System.out.print("Digite a quantidade: ");
+				qntd2 = sc.nextInt();
+				price2 = price2 * qntd2;
+				price = price + price2;
+			}
+		} while (continuar == 0);
+		
+		// data out
+		System.out.printf("Total: R$ %.2f", price);
+		sc.close();
+	}
+
+}
